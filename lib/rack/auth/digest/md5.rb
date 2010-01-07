@@ -83,7 +83,7 @@ module Rack
         end
 
         def valid_opaque?(auth)
-          H(opaque) == auth.opaque
+          H(opaque) == (auth.opaque || H(opaque))
         end
 
         def valid_nonce?(auth)

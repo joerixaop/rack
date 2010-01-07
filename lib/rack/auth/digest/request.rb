@@ -27,6 +27,14 @@ module Rack
           @params ||= Params.parse(parts.last)
         end
 
+        def opaque
+          if params.has_key? :opaque
+            params[:opaque]
+          else
+            nil
+          end
+        end
+
         def method_missing(sym)
           if params.has_key? key = sym.to_s
             return params[key]
