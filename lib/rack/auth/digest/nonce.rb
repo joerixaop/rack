@@ -38,11 +38,11 @@ module Rack
         end
 
         def stale?
-          !self.class.time_limit.nil? && (@timestamp - Time.now.to_i) < self.class.time_limit
+          !fresh?
         end
 
         def fresh?
-          !stale?
+          self.class.time_limit.nil? || (Time.now.to_i - @timestamp) < self.class.time_limit
         end
 
       end
